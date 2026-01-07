@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChainClear.project | Powering Ethical Supply Chains</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --clr-blue: rgba(0, 123, 255, 0.7);
+            --clr-white: #fff;
+            --clr-glass: rgba(255,255,255,0.2);
+            --clr-dark: #0a192f;
+            --clr-accent: #00eaff;
+            --font-main: 'Orbitron', Arial, sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: var(--font-main);
+            background: linear-gradient(135deg, var(--clr-dark) 0%, var(--clr-blue) 100%);
+            color: var(--clr-white);
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem 5vw;
+            background: var(--clr-glass);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--clr-blue), var(--clr-accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 20px var(--clr-blue);
+            margin-right: 1rem;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+            opacity: 0.7;
+        }
+        nav a {
+            color: var(--clr-white);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: var(--clr-accent);
+        }
+        section {
+            padding: 4rem 5vw;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .home {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            text-align: center;
+        }
+        .home h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+        .home .ticker {
+            font-size: 1.5rem;
+            color: var(--clr-accent);
+            margin-bottom: 1rem;
+        }
+        .home .tagline {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            color: var(--clr-white);
+            opacity: 0.85;
+        }
+        .buy-tokens-btn {
+            background: var(--clr-accent);
+            color: var(--clr-dark);
+            border: none;
+            border-radius: 8px;
+            padding: 1rem 3rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 24px var(--clr-blue);
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        .buy-tokens-btn:hover {
+            background: var(--clr-blue);
+            color: var(--clr-white);
+            transform: scale(1.05);
+            box-shadow: 0 8px 32px var(--clr-accent);
+        }
+        .about h2 { font-size: 2rem; margin-bottom: 1rem; }
+        .about p { font-size: 1.1rem; line-height: 1.7; }
+        .problem, .solution {
+            background: var(--clr-glass);
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            margin-bottom: 2rem;
+        }
+        .problem h2, .solution h2 { font-size: 1.7rem; }
+        .problem ul, .solution ul {
+            margin: 1rem 0 0 1.5rem;
+            font-size: 1.1rem;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .feature-card {
+            background: var(--clr-glass);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            width: 220px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.09);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px) scale(1.04);
+            box-shadow: 0 8px 32px var(--clr-blue);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--clr-accent);
+            filter: drop-shadow(0 0 8px var(--clr-blue));
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--clr-glass);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .comparison-table th {
+            background: var(--clr-blue);
+            color: var(--clr-white);
+            font-size: 1.1rem;
+        }
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .contact-links a {
+            color: var(--clr-accent);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.2s;
+            font-size: 1.1rem;
+        }
+        .contact-links a:hover {
+            color: var(--clr-white);
+            text-shadow: 0 0 8px var(--clr-accent);
+        }
+        .whitepaper-btn {
+            background: var(--clr-accent);
+            color: var(--clr-dark);
+            border: none;
+            border-radius: 8px;
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 12px var(--clr-blue);
+            transition: background 0.2s, color 0.2s;
+        }
+        .whitepaper-btn:hover {
+            background: var(--clr-blue);
+            color: var(--clr-white);
+        }
+        @media (max-width: 900px) {
+            .features { flex-direction: column; align-items: center; }
+            header { flex-direction: column; gap: 1rem; }
+        }
+        @media (max-width: 600px) {
+            section { padding: 2rem 3vw; }
+            .home h1 { font-size: 2rem; }
+            .feature-card { width: 90vw; }
+            .comparison-table th, .comparison-table td { padding: 0.7rem; font-size: 0.95rem; }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const logo = document.querySelector('.logo');
+            if (logo) {
+                let shine = document.createElement('div');
+                shine.style.position = 'absolute';
+                shine.style.top = '0';
+                shine.style.left = '0';
+                shine.style.width = '100%';
+                shine.style.height = '100%';
+                shine.style.borderRadius = '50%';
+                shine.style.background = 'linear-gradient(120deg, rgba(255,255,255,0.3) 30%, rgba(255,255,255,0.05) 70%)';
+                shine.style.pointerEvents = 'none';
+                shine.style.transition = 'opacity 0.6s';
+                logo.appendChild(shine);
+                logo.addEventListener('mouseenter', () => { shine.style.opacity = '1'; });
+                logo.addEventListener('mouseleave', () => { shine.style.opacity = '0.5'; });
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/chain.png" alt="ChainClear Logo">
+        </div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#problem">Problem</a>
+            <a href="#solution">Solution</a>
+            <a href="#features">Features</a>
+            <a href="#comparison">Comparison</a>
+            <a href="#contact">Contact</a>
+            <a href="index.html" style="background: var(--clr-accent); color: var(--clr-dark); padding: 0.5rem 1rem; border-radius: 8px;">Buy CLR</a>
+        </nav>
+    </header>
+
+    <section class="home" id="home">
+        <h1>ChainClear.project</h1>
+        <div class="ticker">Coin Ticker: <strong>CLR</strong></div>
+        <div class="tagline">Powering Ethical Supply Chains.</div>
+        <a href="index.html" class="buy-tokens-btn">🚀 Buy CLR Tokens Now</a>
+    </section>
+
+    <section class="about" id="about">
+        <h2>About ChainClear (CLR)</h2>
+        <p>
+            <strong>Vision:</strong> To build a world where every supply chain is transparent, ethical, and trusted.<br>
+            <strong>Mission:</strong> Leveraging blockchain technology to empower businesses and consumers with verifiable, tamper-proof supply chain data, fostering accountability and sustainability.
+        </p>
+        <a href="https://chainclear.gitbook.io/chainclear-docs" target="_blank" class="whitepaper-btn" download>Link to whitepaper (gitbook)</a>
+    </section>
+
+    <section class="problem" id="problem">
+        <h2>Problem: Supply Chain Opacity & Inefficiency</h2>
+        <ul>
+            <li>Lack of transparency leads to unethical practices and counterfeiting.</li>
+            <li>Manual tracking causes delays and errors.</li>
+            <li>Consumers cannot verify product origins or sustainability.</li>
+        </ul>
+    </section>
+
+    <section class="solution" id="solution">
+        <h2>Solution: Blockchain-Powered Transparency</h2>
+        <ul>
+            <li><strong>Immutable Provenance:</strong> Every transaction is recorded and cannot be altered.</li>
+            <li><strong>Trust:</strong> Decentralized verification builds trust among all stakeholders.</li>
+            <li><strong>Smart Contracts:</strong> Automate compliance and payments.</li>
+            <li><strong>Consumer Empowerment:</strong> Easy access to product history and certifications.</li>
+        </ul>
+    </section>
+
+    <section id="features">
+        <h2 style="text-align:center; margin-bottom:2rem;">Key Features</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <div><strong>Transparency</strong></div>
+                <div style="font-size:0.98rem; margin-top:0.5rem;">Real-time, tamper-proof supply chain data.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <div><strong>Anti-Counterfeit</strong></div>
+                <div style="font-size:0.98rem; margin-top:0.5rem;">Verify product authenticity at every stage.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌱</div>
+                <div><strong>Sustainability</strong></div>
+                <div style="font-size:0.98rem; margin-top:0.5rem;">Track eco-friendly practices and certifications.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <div><strong>Efficiency</strong></div>
+                <div style="font-size:0.98rem; margin-top:0.5rem;">Automated processes reduce costs and errors.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison">
+        <h2 style="text-align:center; margin-bottom:2rem;">ChainClear (CLR) vs VeChain (VET)</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>ChainClear (CLR)</th>
+                    <th>VeChain (VET)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Focus</td>
+                    <td>Ethical & Transparent Supply Chains</td>
+                    <td>General Supply Chain Management</td>
+                </tr>
+                <tr>
+                    <td>Consumer Empowerment</td>
+                    <td>Direct access to product history</td>
+                    <td>Limited consumer tools</td>
+                </tr>
+                <tr>
+                    <td>Smart Contract Automation</td>
+                    <td>Advanced, customizable</td>
+                    <td>Standard</td>
+                </tr>
+                <tr>
+                    <td>Sustainability Tracking</td>
+                    <td>Integrated eco-certification</td>
+                    <td>Optional</td>
+                </tr>
+                <tr>
+                    <td>Transparency Level</td>
+                    <td>Full, end-to-end</td>
+                    <td>Partial</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+<section id="pros-cons" style="padding:60px 10%; background:linear-gradient(180deg, #101820, #18212b); color:white;">
+  <h2 style="text-align:center; margin-bottom:2rem; color:#00bcd4;">Pros & Cons: Blockchain vs Non-Blockchain Solutions</h2>
+  
+  <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem;">
+    <div style="flex:1; min-width:300px; background:#0e2b2f; padding:20px; border-radius:12px; box-shadow:0 4px 24px rgba(0,0,0,0.3);">
+      <h3 style="color:#4caf50;">Pros (Advantages)</h3>
+      <ul style="line-height:1.8;">
+        <li><b>Transparency and Traceability:</b> Every transaction is recorded on a shared ledger visible to authorized stakeholders, reducing counterfeit and unethical sourcing.</li>
+        <li><b>Enhanced Trust Among Stakeholders:</b> Shared verified data reduces manipulation and removes the need for a central authority.</li>
+        <li><b>Improved Efficiency and Automation:</b> Smart contracts automate payments and compliance, lowering administrative costs.</li>
+        <li><b>Consumer Empowerment:</b> QR codes let users verify a product's history and authenticity.</li>
+        <li><b>Resilience and Security:</b> Decentralization prevents single points of failure and enhances data security.</li>
+        <li><b>Supports Compliance and Sustainability Goals:</b> Blockchain records help meet ESG standards and audit requirements.</li>
+      </ul>
+    </div>
+
+    <div style="flex:1; min-width:300px; background:#2e1a1a; padding:20px; border-radius:12px; box-shadow:0 4px 24px rgba(0,0,0,0.3);">
+      <h3 style="color:#e57373;">Cons (Challenges)</h3>
+      <ul style="line-height:1.8;">
+        <li><b>High Implementation Cost:</b> Setup and integration can be expensive, especially for SMEs.</li>
+        <li><b>Scalability Issues:</b> Public blockchains may have slow speeds and high energy use.</li>
+        <li><b>Data Privacy Concerns:</b> Balancing transparency with confidentiality can be complex.</li>
+        <li><b>Interoperability Challenges:</b> Different blockchain systems may not easily integrate with existing ERP platforms.</li>
+        <li><b>Regulatory and Legal Uncertainty:</b> Governance and smart contract laws are still developing.</li>
+        <li><b>Dependence on Data Input Accuracy:</b> Blockchain can preserve false data if input is incorrect ("garbage in, garbage out").</li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="text-align:center; margin-top:2rem; color:#ccc;">Source example: Agrawal et al. (2021) – Blockchain-based framework for supply chain traceability.</p>
+</section>
+
+<section id="references" style="padding:60px 10%; background:linear-gradient(180deg, #18212b, #101820); color:white;">
+  <h2 style="text-align:center; margin-bottom:2rem; color:#00bcd4;">References</h2>
+
+  <div style="max-width:800px; margin:auto; line-height:1.8;">
+    <h3>Non-Journal Sources:</h3>
+    <ul>
+      <li>Deloitte. (n.d.). <i>Using blockchain to drive supply chain transparency.</i> Deloitte. 
+        <a href="https://www.deloitte.com/us/en/services/consulting/articles/blockchain-supply-chain-innovation.html" target="_blank" style="color:#00bcd4;">Link</a></li>
+      <li>Lee, H. L., & Gereffi, G. (2020, May 15). <i>Building a transparent supply chain.</i> Harvard Business Review. 
+        <a href="https://hbr.org/2020/05/building-a-transparent-supply-chain" target="_blank" style="color:#00bcd4;">Link</a></li>
+    </ul>
+
+    <h3>Journal Sources:</h3>
+    <ul>
+      <li>Agrawal, T. K., Kumar, V., Pal, R., Wang, L., & Chen, Y. (2021). <i>Blockchain-based framework for supply chain traceability: A case example of textile and clothing industry.</i> Computers & Industrial Engineering, 154. 
+        <a href="https://www.sciencedirect.com/science/article/pii/S0360835221000346" target="_blank" style="color:#00bcd4;">Link</a></li>
+      <li>Kumar, N., Choudhury, A., & Gupta, S. (2025). <i>Blockchain technology in supply chain management: Applications, benefits, and challenges.</i> ScienceDirect. 
+        <a href="https://www.sciencedirect.com/science/article/pii/S2772503025000192" target="_blank" style="color:#00bcd4;">Link</a></li>
+      <li>Karaduman, Ö., Aydin, M., & Yilmaz, H. (2025). <i>Blockchain-enabled supply chain management: A review.</i> Applied Sciences, 15(9), 5168. 
+        <a href="https://www.mdpi.com/2076-3417/15/9/5168" target="_blank" style="color:#00bcd4;">Link</a></li>
+      <li>Patel, A., Sai, S., Daiya, A., Akolekar, H., & Chamola, V. (2025). <i>Blockchain enabled traceability in the jewel supply chain.</i> Scientific Reports, 15, 88245. 
+        <a href="https://www.nature.com/articles/s41598-025-88245-4" target="_blank" style="color:#00bcd4;">Link</a></li>
+    </ul>
+  </div>
+</section>
+
+
+    <section id="contact">
+        <h2 style="text-align:center; margin-bottom:2rem;">Contact & Resources</h2>
+        <div class="contact-links">
+            <a href="mailto:chainclear.project@gmail.com" target="_blank">📧 chainclear.project@gmail.com</a>
+            <a href="https://www.instagram.com/chainclear.project?igsh=a3V6MmdhbGJudjl3" target="_blank">📸 Instagram</a>
+            <a href="http://www.youtube.com/@chainclearproject" target="_blank">▶️ YouTube</a>
+        </div>
+    </section>
+
+    <footer style="text-align:center; padding:2rem 0; color:#aaa; font-size:0.95rem;">
+        &copy; 2024 ChainClear.project. All rights reserved.
+    </footer>
+</body>
+</html>
